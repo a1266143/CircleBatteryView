@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:gravity="center_horizontal"
     tools:context=".MainActivity">
 
     <com.lee.circlebatteryview.CircleBatteryView
@@ -27,4 +30,24 @@
         android:max="100"
         />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <com.lee.circlebatteryview.CircleBatteryView
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="16dp"
+        app:_backStrokeWidth="4dp"
+        app:_foreStrokeWidth="4dp"
+        app:_batteryTextSize="12dp"
+        app:_batteryLevel="45"
+        />
+
+    <com.lee.circlebatteryview.CircleBatteryView
+        android:layout_width="96dp"
+        android:layout_height="96dp"
+        android:layout_marginTop="16dp"
+        app:_batteryLevel="45"
+        app:_foreStrokeWidth="8dp"
+        app:_backStrokeWidth="8dp"
+        app:_batteryTextSize="24dp"
+        />
+
+</LinearLayout>
