@@ -21,6 +21,9 @@
         />
 ```
 
+设置电池电量值:
+CircleBatteryViewInstance.setBattery(50);
+
 ***
 **注意事项**
 ***
