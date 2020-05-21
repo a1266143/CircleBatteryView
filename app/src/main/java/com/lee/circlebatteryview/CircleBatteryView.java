@@ -158,6 +158,41 @@ public class CircleBatteryView extends View {
         invalidate();
     }
 
+    public void setBackColor(int color){
+        mBackColor = color;
+        invalidate();
+    }
+
+    public void setForeColor(int color){
+        mForeColor = color;
+        invalidate();
+    }
+
+    public void setBackStrokeWidth(int width){
+        mBackStrokeWidth = width;
+        invalidate();
+    }
+
+    public void setForeStrokeWidth(int width){
+        mForeStrokeWidth = width;
+        invalidate();
+    }
+
+    public void showBatteryText(boolean show){
+        mShowBatteryText = show;
+        invalidate();
+    }
+
+    public void setBatteryTextSize(int textSize){
+        mBatteryTextSize = textSize;
+        invalidate();
+    }
+
+    public void setBatteryTextColor(int color){
+        mBatteryTextColor = color;
+        invalidate();
+    }
+
     /**
      * 计算上层电量的显示百分比
      */
