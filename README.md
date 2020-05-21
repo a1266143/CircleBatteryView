@@ -35,7 +35,7 @@ That's it
 在你的布局文件中输入 "_" 即可显示所有自定义属性
 
 |属性名              |属性格式          | 属性描述     | 对应方法 |
-| -----------------  | -------------- | ---------------- |s----------------|
+| -----------------  | -------------- | ---------------- |----------------|
 |_backColor        |color             | 底层圈颜色    |setBackColor|
 |_foreColor         |color             | 上层圈颜色    |setForeColor|
 |_backStrokeWidth|dimension | 底层圈线宽     |setBackStrokeWidth|
