@@ -17,10 +17,6 @@
 <com.lee.circlebatteryview.CircleBatteryView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:_batteryLevel="85"
         />
 ```
