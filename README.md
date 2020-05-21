@@ -9,7 +9,7 @@
 ![image](https://github.com/a1266143/CircleBatteryView/blob/master/image/example.png) ![image](https://github.com/a1266143/CircleBatteryView/blob/master/image/example.gif)
 
 ***
-使用
+**使用**
 ***
 
 在您的布局文件中添加如下代码即可:
@@ -26,7 +26,7 @@
 ```
 
 ***
-注意事项
+**注意事项**
 ***
 
 因为CircleBatteryView宽度和高度默认是一样的,如果你在布局文件中给CircleBatteryView使用不同的宽度和高度,CircleBatteryView会使用宽度和高度之中的更大值作为默认值
