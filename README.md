@@ -9,8 +9,27 @@
 ![image](https://github.com/a1266143/CircleBatteryView/blob/master/image/example.png) ![image](https://github.com/a1266143/CircleBatteryView/blob/master/image/example.gif)
 
 ***
-使用属性
+使用
 ***
+
+在您的布局文件中添加如下代码即可:
+```
+<com.lee.circlebatteryview.CircleBatteryView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:_batteryLevel="85"
+        />
+```
+
+***
+注意事项
+***
+
+因为CircleBatteryView宽度和高度默认是一样的,如果你在布局文件中给CircleBatteryView使用不同的宽度和高度,CircleBatteryView会使用宽度和高度之中的更大值作为默认值
 
 在你的布局文件中输入 "_" 即可显示所有自定义属性
 
