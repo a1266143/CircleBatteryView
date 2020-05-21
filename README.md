@@ -6,7 +6,8 @@
 
 *效果*
 
-![image](https://github.com/a1266143/CircleBatteryView/blob/master/image/example.png) ![image](https://github.com/a1266143/CircleBatteryView/blob/master/image/example.gif)
+![image](https://github.com/a1266143/CircleBatteryView/blob/master/image/example.png) ![image](https://github.com/a1266143/CircleBatteryView/blob/master/image/example2.png)
+
 
 ***
 **使用**
