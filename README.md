@@ -24,6 +24,8 @@
 设置电池电量值:
 CircleBatteryViewInstance.setBattery(50);
 
+That's it
+
 ***
 **注意事项**
 ***
