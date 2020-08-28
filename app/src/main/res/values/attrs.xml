@@ -17,5 +17,7 @@
         <attr name="_batteryTextColor" format="color" />
         <!-- 电池电量 -->
         <attr name="_batteryLevel" format="integer" />
+        <!-- 充电图标颜色 -->
+        <attr name="_chargeIconColor" format="color" />
     </declare-styleable>
 </resources>

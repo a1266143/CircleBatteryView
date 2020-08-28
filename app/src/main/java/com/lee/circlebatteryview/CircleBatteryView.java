@@ -47,6 +47,8 @@ public class CircleBatteryView extends View {
     int mBatteryLevel;
     //是否在充电状态
     boolean mIsCharge;
+    //充电图标颜色
+    int mChargeIconColor;
     //--------------------------------------------------------
 
     public CircleBatteryView(Context context) {
@@ -99,6 +101,7 @@ public class CircleBatteryView extends View {
         mBatteryTextSize = typedArray.getDimension(R.styleable.CircleBatteryView__batteryTextSize, Utils.dp2px(context, 7));
         mBatteryTextColor = typedArray.getColor(R.styleable.CircleBatteryView__batteryTextColor, Color.parseColor("#777777"));
         mBatteryLevel = typedArray.getInteger(R.styleable.CircleBatteryView__batteryLevel, 0);
+        mChargeIconColor = typedArray.getColor(R.styleable.CircleBatteryView__chargeIconColor, Color.WHITE);
         typedArray.recycle();
         /*Log.e("xiaojun", "获取到的参数," +
                 "mBackStrokeWidth=" + mBackStrokeWidth +
@@ -116,8 +119,10 @@ public class CircleBatteryView extends View {
         this.mHalfOfWidth = mWidth / 2;
         this.mHalfOfHeight = mHeight / 2;
         Drawable drawable = ContextCompat.getDrawable(getContext(), R.drawable.charge);
-        if (drawable!=null){
-            mBitmapCharge = Bitmap.createBitmap(mWidth, mHeight, Bitmap.Config.ARGB_8888);
+        if (drawable != null) {
+            drawable.setTint(mChargeIconColor);
+            if (mBitmapCharge == null)
+                mBitmapCharge = Bitmap.createBitmap(mWidth, mHeight, Bitmap.Config.ARGB_8888);
             Canvas canvas = new Canvas(mBitmapCharge);
             drawable.setBounds(0, 0, mWidth, mHeight);
             drawable.draw(canvas);
@@ -159,8 +164,9 @@ public class CircleBatteryView extends View {
 
     /**
      * 设置电池电量
+     *
      * @param batteryLevel 电池电量
-     * @param isCharge 充电状态
+     * @param isCharge     充电状态
      */
     public void setBattery(int batteryLevel, boolean isCharge) {
         mIsCharge = isCharge;
@@ -205,6 +211,11 @@ public class CircleBatteryView extends View {
 
     public void setBatteryTextColor(int color) {
         mBatteryTextColor = color;
+        invalidate();
+    }
+
+    public void setChrgeIconColor(int color){
+        mChargeIconColor = color;
         invalidate();
     }
 

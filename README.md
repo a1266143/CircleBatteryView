@@ -70,5 +70,6 @@ That's it
 |_batteryTextSize |dimension   | 电量文本字体大小 |setBatteryTextSize|
 |_batteryTextColor|color          |电池电量文本颜色|setBatteryTextColor|
 |_batteryLevel      |integer        |电池电量         |setBattery|
+|_chargeIconColor |color        |充电图标颜色         |ssetChrgeIconColor|
 
 
