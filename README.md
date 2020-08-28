@@ -23,7 +23,10 @@
 ```
 
 设置电池电量值:
-CircleBatteryViewInstance.setBattery(50);
+CircleBatteryViewInstance.setBattery(50,false);
+
+设置电池充电状态:
+CircleBatteryViewInstance.setBattery(50,true);
 
 That's it
 
