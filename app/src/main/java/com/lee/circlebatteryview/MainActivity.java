@@ -19,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
         mSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                mCircleBatteryView.setBattery(progress);
+                mCircleBatteryView.setBattery(progress,true);
             }
 
             @Override
