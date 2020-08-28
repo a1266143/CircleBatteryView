@@ -2,14 +2,16 @@ package com.lee.circlebatteryview;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.View;
 
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 
 /**
  * 圆圈电池View
@@ -24,6 +26,7 @@ public class CircleBatteryView extends View {
     private int mWidth, mHeight, mHalfOfWidth, mHalfOfHeight;
     private float mDistance_center_baseline;
     private int mSweepAngle;//电池电量扫过的角度
+    private Bitmap mBitmapCharge;//充电图标
 
     //--------------------自定义属性-----------------------
     //底层圈color
@@ -42,6 +45,8 @@ public class CircleBatteryView extends View {
     int mBatteryTextColor;
     //电池电量
     int mBatteryLevel;
+    //是否在充电状态
+    boolean mIsCharge;
     //--------------------------------------------------------
 
     public CircleBatteryView(Context context) {
@@ -110,6 +115,13 @@ public class CircleBatteryView extends View {
         this.mHeight = h;
         this.mHalfOfWidth = mWidth / 2;
         this.mHalfOfHeight = mHeight / 2;
+        Drawable drawable = ContextCompat.getDrawable(getContext(), R.drawable.charge);
+        if (drawable!=null){
+            mBitmapCharge = Bitmap.createBitmap(mWidth, mHeight, Bitmap.Config.ARGB_8888);
+            Canvas canvas = new Canvas(mBitmapCharge);
+            drawable.setBounds(0, 0, mWidth, mHeight);
+            drawable.draw(canvas);
+        }
     }
 
     @Override
@@ -147,48 +159,51 @@ public class CircleBatteryView extends View {
 
     /**
      * 设置电池电量
-     *
-     * @param batteryLevel
+     * @param batteryLevel 电池电量
+     * @param isCharge 充电状态
      */
-    public void setBattery(int batteryLevel) {
-        if (batteryLevel > 100 || batteryLevel < 0)
-            throw new RuntimeException("电池电量必须在0~100");
+    public void setBattery(int batteryLevel, boolean isCharge) {
+        mIsCharge = isCharge;
+        if (batteryLevel > 100)
+            batteryLevel = 100;
+        if (batteryLevel < 0)
+            batteryLevel = 0;
         mBatteryLevel = batteryLevel;
         calcForeSweepAngle();
         invalidate();
     }
 
-    public void setBackColor(int color){
+    public void setBackColor(int color) {
         mBackColor = color;
         invalidate();
     }
 
-    public void setForeColor(int color){
+    public void setForeColor(int color) {
         mForeColor = color;
         invalidate();
     }
 
-    public void setBackStrokeWidth(int width){
+    public void setBackStrokeWidth(int width) {
         mBackStrokeWidth = width;
         invalidate();
     }
 
-    public void setForeStrokeWidth(int width){
+    public void setForeStrokeWidth(int width) {
         mForeStrokeWidth = width;
         invalidate();
     }
 
-    public void showBatteryText(boolean show){
+    public void showBatteryText(boolean show) {
         mShowBatteryText = show;
         invalidate();
     }
 
-    public void setBatteryTextSize(int textSize){
+    public void setBatteryTextSize(int textSize) {
         mBatteryTextSize = textSize;
         invalidate();
     }
 
-    public void setBatteryTextColor(int color){
+    public void setBatteryTextColor(int color) {
         mBatteryTextColor = color;
         invalidate();
     }
@@ -205,20 +220,23 @@ public class CircleBatteryView extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        canvas.save();
-        canvas.translate(mHalfOfWidth, mHalfOfHeight);
-        //drawback
-        canvas.drawArc(mBackStrokeWidth / 2 - mHalfOfWidth, -mHalfOfHeight + mBackStrokeWidth / 2, mHalfOfWidth - mBackStrokeWidth / 2, mHalfOfHeight - mBackStrokeWidth / 2, mSweepAngle-90, 360-mSweepAngle, false, mPaintBack);
-        //drawForeground
-        if (mBatteryLevel < 30 && mBatteryLevel > 15)
-            mPaintFore.setColor(Color.YELLOW);
-        else if (mBatteryLevel >= 0 && mBatteryLevel <= 15)
-            mPaintFore.setColor(Color.RED);
-        else
-            mPaintFore.setColor(mForeColor);
-        canvas.drawArc(mForeStrokeWidth / 2 - mHalfOfWidth, -mHalfOfHeight + mForeStrokeWidth / 2, mHalfOfWidth - mForeStrokeWidth / 2, mHalfOfHeight - mForeStrokeWidth / 2, -90, mSweepAngle, false, mPaintFore);
-        //drawText
-        canvas.drawText(mBatteryLevel + "", 0, mDistance_center_baseline, mPaintText);
-        canvas.restore();
+        if (!mIsCharge) {
+            canvas.save();
+            canvas.translate(mHalfOfWidth, mHalfOfHeight);
+            //drawback
+            canvas.drawArc(mBackStrokeWidth / 2 - mHalfOfWidth, -mHalfOfHeight + mBackStrokeWidth / 2, mHalfOfWidth - mBackStrokeWidth / 2, mHalfOfHeight - mBackStrokeWidth / 2, mSweepAngle - 90, 360 - mSweepAngle, false, mPaintBack);
+            //drawForeground
+            if (mBatteryLevel < 30 && mBatteryLevel > 15)
+                mPaintFore.setColor(Color.YELLOW);
+            else if (mBatteryLevel >= 0 && mBatteryLevel <= 15)
+                mPaintFore.setColor(Color.RED);
+            else
+                mPaintFore.setColor(mForeColor);
+            canvas.drawArc(mForeStrokeWidth / 2 - mHalfOfWidth, -mHalfOfHeight + mForeStrokeWidth / 2, mHalfOfWidth - mForeStrokeWidth / 2, mHalfOfHeight - mForeStrokeWidth / 2, -90, mSweepAngle, false, mPaintFore);
+            //drawText
+            canvas.drawText(mBatteryLevel + "", 0, mDistance_center_baseline, mPaintText);
+            canvas.restore();
+        } else
+            canvas.drawBitmap(mBitmapCharge, 0, 0, mPaintBack);
     }
 }
