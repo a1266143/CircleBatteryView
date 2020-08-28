@@ -30,8 +30,7 @@ dependencies {
 	    implementation 'com.github.a1266143:CircleBatteryView:Tag'
 }
 ```
-
-请将Tag替换为 [![](https://jitpack.io/v/a1266143/CircleBatteryView.svg)](https://jitpack.io/#a1266143/CircleBatteryView)
+最新版本号: [![](https://jitpack.io/v/a1266143/CircleBatteryView.svg)](https://jitpack.io/#a1266143/CircleBatteryView)
 
 ***
 **使用**
